@@ -49,7 +49,7 @@
   "pwdSecurityLow": { "message": "低（明文 + 记录）" },
   "pwdSecurityMedium": { "message": "中（密文 + 记录）" },
   "pwdSecurityHigh": { "message": "高（密文 + 不记录）" },
-  "chkColorAdvanced": { "message": "🎨 颜色生成器高级模式（含透明度/RGB/HSL）" },
+  "chkColorAdvanced": { "message": "🎨 颜色生成器高级模式" },
   "sectionHistory": { "message": "📜 历史记录" },
   "btnClear": { "message": "🗑️ 清空" },
   "btnExport": { "message": "📤 导出" },

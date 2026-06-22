@@ -49,7 +49,7 @@
   "pwdSecurityLow": { "message": "Low (plaintext + history)" },
   "pwdSecurityMedium": { "message": "Medium (masked + history)" },
   "pwdSecurityHigh": { "message": "High (masked + no history)" },
-  "chkColorAdvanced": { "message": "🎨 Color Advanced Mode (transparency / RGB / HSL)" },
+  "chkColorAdvanced": { "message": "🎨 Color Advanced Mode" },
   "sectionHistory": { "message": "📜 History" },
   "btnClear": { "message": "🗑️ Clear" },
   "btnExport": { "message": "📤 Export" },

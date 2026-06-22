@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机数生成器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎲 随机数生成器</h1>
+      <button class="btn-settings" id="btn-settings" title="设置">⚙️</button>
+    </header>
+
+    <!-- ======== 主视图 ======== -->
+    <div class="main-view" id="main-view">
+
+      <nav class="tabs" id="tabs">
+        <button class="tab active" data-tab="decimal">小数</button>
+        <button class="tab" data-tab="integer">整数</button>
+        <button class="tab" data-tab="password">口令</button>
+        <button class="tab" data-tab="rgb">颜色</button>
+        <button class="tab" data-tab="sequence">随机序列</button>
+      </nav>
+
+      <div class="tab-content">
+
+        <!-- 1. 小数 -->
+        <section class="panel active" id="panel-decimal">
+          <div class="setting">
+            <label for="dec-places">小数位数：</label>
+            <input type="number" id="dec-places" value="3" min="1" max="32">
+            <span class="error-hint" data-for="dec-places"></span>
+          </div>
+          <div class="output-area">
+            <label for="dec-result">结果：</label>
+            <input type="text" id="dec-result" readonly>
+          </div>
+        </section>
+
+        <!-- 2. 整数 -->
+        <section class="panel" id="panel-integer">
+          <div class="setting row">
+            <div>
+              <label for="int-min">最小值：</label>
+              <input type="number" id="int-min" value="0">
+              <span class="error-hint" data-for="int-min"></span>
+            </div>
+            <div>
+              <label for="int-max">最大值：</label>
+              <input type="number" id="int-max" value="100">
+              <span class="error-hint" data-for="int-max"></span>
+            </div>
+          </div>
+          <button class="swap-btn" id="swap-int">🔄 对调最大/最小值</button>
+          <span class="warn-hint" data-for="int-pair"></span>
+          <div class="output-area">
+            <label for="int-result">结果：</label>
+            <input type="text" id="int-result" readonly>
+          </div>
+        </section>
+
+        <!-- 3. 口令 -->
+        <section class="panel" id="panel-password">
+          <div class="setting">
+            <label for="pwd-length">口令长度：</label>
+            <input type="number" id="pwd-length" value="16" min="6" max="128">
+            <span class="error-hint" data-for="pwd-length"></span>
+          </div>
+          <div class="setting checkboxes">
+            <label><input type="checkbox" id="pwd-upper" checked> 大写字母 (A-Z)</label>
+            <label><input type="checkbox" id="pwd-lower" checked> 小写字母 (a-z)</label>
+            <label><input type="checkbox" id="pwd-digit" checked> 数字 (0-9)</label>
+            <label><input type="checkbox" id="pwd-special" checked> 特殊字符 (!@#$...)</label>
+          </div>
+          <div class="output-area output-row">
+            <label for="pwd-result">结果：</label>
+            <input type="text" id="pwd-result" readonly>
+            <button class="copy-mini" id="btn-toggle-pwd" title="显示/隐藏口令">👁️</button>
+          </div>
+          <p class="warn-hint" id="hint-pwd-history" style="margin-top:8px">⚠️ 口令将保留在历史记录中，可在设置中配置</p>
+        </section>
+
+        <!-- 4. 随机颜色 -->
+        <section class="panel" id="panel-rgb">
+          <div class="color-preview" id="color-preview"></div>
+          <p class="warn-hint" data-for="color-similar"></p>
+          <div class="color-advanced" id="color-advanced">
+            <label class="alpha-random-row"><input type="checkbox" id="chk-random-alpha"> 🎲 透明度参与随机</label>
+            <div class="alpha-block" id="alpha-block">
+              <div class="opacity-slider">
+                <label for="alpha-range">透明度：</label>
+                <input type="range" id="alpha-range" min="0" max="100" value="100">
+                <input type="number" id="alpha-input" min="0" max="100" value="100">
+                <span class="error-hint" data-for="alpha-input"></span>
+              </div>
+              <div class="alpha-tools">
+                <button class="lock-btn" id="btn-lock-alpha" title="透明度未锁定，每次生成随机颜色时透明度自动重置到100%">🔓 透明度未锁定</button>
+                <label class="alpha-check"><input type="checkbox" id="chk-show-alpha"> 100%时也显示alpha格式</label>
+              </div>
+            </div>
+          </div>
+          <div class="output-area output-row" id="row-hex">
+            <label for="hex-result">HEX：</label>
+            <input type="text" id="hex-result" readonly>
+            <button class="copy-mini" data-copy="hex" title="复制 HEX 代码">📋</button>
+          </div>
+          <div class="output-area output-row" id="row-rgb">
+            <label for="rgb-result">RGB：</label>
+            <input type="text" id="rgb-result" readonly>
+            <button class="copy-mini" data-copy="rgb" title="复制 RGB 数值">📋</button>
+          </div>
+          <div class="output-area output-row" id="row-hsl">
+            <label for="hsl-result">HSL：</label>
+            <input type="text" id="hsl-result" readonly>
+            <button class="copy-mini" data-copy="hsl" title="复制 HSL 值">📋</button>
+          </div>
+          <div class="output-area output-row" id="row-lab">
+            <label for="lab-result">LAB：</label>
+            <input type="text" id="lab-result" readonly>
+            <button class="copy-mini" data-copy="lab" title="复制 LAB 值">📋</button>
+          </div>
+          <div class="output-area output-row" id="row-cmyk">
+            <label for="cmyk-result">CMYK：</label>
+            <input type="text" id="cmyk-result" readonly>
+            <button class="copy-mini" data-copy="cmyk" title="复制 CMYK 值">📋</button>
+          </div>
+        </section>
+
+        <!-- 5. 随机序列 -->
+        <section class="panel" id="panel-sequence">
+          <div class="setting">
+            <label for="seq-count">随机数数量：</label>
+            <input type="number" id="seq-count" value="5" min="1" max="1024">
+            <span class="error-hint" data-for="seq-count"></span>
+          </div>
+          <div class="setting">
+            <label for="seq-type">随机数类型：</label>
+            <select id="seq-type">
+              <option value="decimal">小数 (0-1)</option>
+              <option value="integer">整数</option>
+            </select>
+          </div>
+          <div class="setting seq-decimal-config">
+            <label for="seq-dec-places">小数位数：</label>
+            <input type="number" id="seq-dec-places" value="3" min="1" max="32">
+            <span class="error-hint" data-for="seq-dec-places"></span>
+          </div>
+          <div class="setting row seq-integer-config" style="display:none">
+            <div>
+              <label for="seq-int-min">最小值：</label>
+              <input type="number" id="seq-int-min" value="0">
+              <span class="error-hint" data-for="seq-int-min"></span>
+            </div>
+            <div>
+              <label for="seq-int-max">最大值：</label>
+              <input type="number" id="seq-int-max" value="100">
+              <span class="error-hint" data-for="seq-int-max"></span>
+            </div>
+          </div>
+          <button class="swap-btn" id="swap-seq-int">🔄 对调最大/最小值</button>
+          <span class="warn-hint" data-for="seq-int-pair"></span>
+          <div class="output-area">
+            <label for="seq-result">结果：</label>
+            <input type="text" id="seq-result" readonly>
+          </div>
+        </section>
+      </div>
+
+      <footer id="footer">
+        <button class="btn btn-primary" id="btn-generate">🎰 摇取</button>
+        <button class="btn btn-secondary" id="btn-copy">📋 复制</button>
+      </footer>
+
+    </div><!-- /main-view -->
+
+    <!-- ======== 设置视图 ======== -->
+    <div class="settings-view" id="settings-view">
+      <div class="settings-scroll">
+      <h2>⚙️ 设置</h2>
+
+      <div class="settings-section">
+        <h3>主题颜色</h3>
+        <div class="color-presets" id="color-presets">
+          <button class="color-preset" data-color="purple"  style="background:#6366f1" title="紫色"></button>
+          <button class="color-preset" data-color="blue"    style="background:#3b82f6" title="蓝色"></button>
+          <button class="color-preset" data-color="green"   style="background:#10b981" title="绿色"></button>
+          <button class="color-preset" data-color="red"     style="background:#ef4444" title="红色"></button>
+          <button class="color-preset" data-color="orange"  style="background:#f59e0b" title="橙色"></button>
+          <button class="color-preset" data-color="pink"    style="background:#ec4899" title="粉色"></button>
+          <button class="color-preset" data-color="cyan"    style="background:#06b6d4" title="青色"></button>
+          <button class="color-preset" data-color="slate"   style="background:#475569" title="深灰"></button>
+        </div>
+        <div class="custom-color-row">
+          <label for="input-custom-color">自定义：</label>
+          <input type="text" id="input-custom-color" placeholder="6366f1" maxlength="7">
+          <span class="error-hint" data-for="input-custom-color"></span>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>显示选项<span style="font-weight:400;font-size:12px;color:#9ca3af">（最少保留 2 项）</span></h3>
+        <div class="setting checkboxes" id="visibility-toggles">
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="decimal" checked> 小数</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="decimal" title="左移">▲</button><button class="arrow-btn arrow-down" data-tab="decimal" title="右移">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="integer" checked> 整数</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="integer" title="左移">▲</button><button class="arrow-btn arrow-down" data-tab="integer" title="右移">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="password" checked> 口令</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="password" title="左移">▲</button><button class="arrow-btn arrow-down" data-tab="password" title="右移">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="rgb" checked> 颜色</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="rgb" title="左移">▲</button><button class="arrow-btn arrow-down" data-tab="rgb" title="右移">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="sequence" checked> 随机序列</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="sequence" title="左移">▲</button><button class="arrow-btn arrow-down" data-tab="sequence" title="右移">▼</button></span></div>
+        </div>
+        <p class="hint-error" id="hint-min-tabs">至少保留 2 个选项</p>
+      </div>
+
+      <div class="settings-section">
+        <h3>功能</h3>
+        <div class="setting">
+          <label for="sel-pwd-security">🔒 口令保密级别：</label>
+          <select id="sel-pwd-security">
+            <option value="default">默认（密文 + 记录 + 告警）</option>
+            <option value="low">低（明文 + 记录）</option>
+            <option value="medium">中（密文 + 记录）</option>
+            <option value="high">高（密文 + 不记录）</option>
+          </select>
+        </div>
+        <div class="setting checkboxes">
+          <label><input type="checkbox" id="chk-color-advanced"> 🎨 颜色生成器高级模式（含透明度/RGB/HSL）</label>
+        </div>
+      </div>
+
+      <div class="settings-section history-section">
+        <div class="history-header">
+          <h3>📜 历史记录</h3>
+          <div class="history-btns">
+            <button class="btn-export-history" id="btn-export-history" title="导出 JSON">📤 导出</button>
+            <button class="btn-clear-history" id="btn-clear-history">🗑️ 清空</button>
+          </div>
+        </div>
+        <div class="history-list" id="history-list">
+          <p class="history-empty">暂无记录</p>
+        </div>
+      </div>
+      </div><!-- /settings-scroll -->
+
+      <button class="btn btn-primary btn-confirm" id="btn-back">✅ 确认</button>
+    </div><!-- /settings-view -->
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

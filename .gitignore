@@ -1,0 +1,39 @@
+# Python virtual environment
+.venv/
+
+# IDE settings
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Node
+node_modules/
+package-lock.json
+bun.lockb
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Claude / AI
+.claude/
+
+# Icon generator script (icons themselves are kept)
+generate_icons.py
+
+# Distribution archives
+*.zip
+*.crx
+*.pem
+
+# Build
+dist/
+
+# Logs
+*.log

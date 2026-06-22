@@ -10,6 +10,20 @@ function t(key, ...subs) {
   return msg;
 }
 
+/** Scan DOM for data-i18n / data-i18n-title / data-i18n-placeholder and inject translations */
+function localizePage() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.title = t(el.getAttribute('data-i18n-title'));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+  });
+}
+localizePage();
+
 // ---------- Preset Themes ----------
 const THEMES = {
   purple: { primary: '#6366f1', light: '#8b5cf6', rgb: '99, 102, 241' },

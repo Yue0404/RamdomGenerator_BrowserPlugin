@@ -9,19 +9,19 @@
 <body>
   <div class="container">
     <header>
-      <h1>__MSG_appTitle__</h1>
-      <button class="btn-settings" id="btn-settings" title="__MSG_settings__">⚙️</button>
+      <h1 data-i18n="appTitle">🎲 随机数生成器</h1>
+      <button class="btn-settings" id="btn-settings" data-i18n-title="settings">⚙️</button>
     </header>
 
     <!-- ======== Main View ======== -->
     <div class="main-view" id="main-view">
 
       <nav class="tabs" id="tabs">
-        <button class="tab active" data-tab="decimal">__MSG_tabDecimal__</button>
-        <button class="tab" data-tab="integer">__MSG_tabInteger__</button>
-        <button class="tab" data-tab="password">__MSG_tabPassword__</button>
-        <button class="tab" data-tab="rgb">__MSG_tabRgb__</button>
-        <button class="tab" data-tab="sequence">__MSG_tabSequence__</button>
+        <button class="tab active" data-tab="decimal" data-i18n="tabDecimal">小数</button>
+        <button class="tab" data-tab="integer" data-i18n="tabInteger">整数</button>
+        <button class="tab" data-tab="password" data-i18n="tabPassword">口令</button>
+        <button class="tab" data-tab="rgb" data-i18n="tabRgb">颜色</button>
+        <button class="tab" data-tab="sequence" data-i18n="tabSequence">随机序列</button>
       </nav>
 
       <div class="tab-content">
@@ -29,12 +29,12 @@
         <!-- 1. Decimal -->
         <section class="panel active" id="panel-decimal">
           <div class="setting">
-            <label for="dec-places">__MSG_labelDecimalPlaces__</label>
+            <label for="dec-places" data-i18n="labelDecimalPlaces">小数位数：</label>
             <input type="number" id="dec-places" value="3" min="1" max="32">
             <span class="error-hint" data-for="dec-places"></span>
           </div>
           <div class="output-area">
-            <label for="dec-result">__MSG_labelResult__</label>
+            <label for="dec-result" data-i18n="labelResult">结果：</label>
             <input type="text" id="dec-result" readonly>
           </div>
         </section>
@@ -43,20 +43,20 @@
         <section class="panel" id="panel-integer">
           <div class="setting row">
             <div>
-              <label for="int-min">__MSG_labelIntMin__</label>
+              <label for="int-min" data-i18n="labelIntMin">最小值：</label>
               <input type="number" id="int-min" value="0">
               <span class="error-hint" data-for="int-min"></span>
             </div>
             <div>
-              <label for="int-max">__MSG_labelIntMax__</label>
+              <label for="int-max" data-i18n="labelIntMax">最大值：</label>
               <input type="number" id="int-max" value="100">
               <span class="error-hint" data-for="int-max"></span>
             </div>
           </div>
-          <button class="swap-btn" id="swap-int">__MSG_btnSwap__</button>
+          <button class="swap-btn" id="swap-int" data-i18n="btnSwap">🔄 对调最大/最小值</button>
           <span class="warn-hint" data-for="int-pair"></span>
           <div class="output-area">
-            <label for="int-result">__MSG_labelResult__</label>
+            <label for="int-result" data-i18n="labelResult">结果：</label>
             <input type="text" id="int-result" readonly>
           </div>
         </section>
@@ -64,22 +64,22 @@
         <!-- 3. Password -->
         <section class="panel" id="panel-password">
           <div class="setting">
-            <label for="pwd-length">__MSG_labelPwdLength__</label>
+            <label for="pwd-length" data-i18n="labelPwdLength">口令长度：</label>
             <input type="number" id="pwd-length" value="16" min="6" max="128">
             <span class="error-hint" data-for="pwd-length"></span>
           </div>
           <div class="setting checkboxes">
-            <label><input type="checkbox" id="pwd-upper" checked> __MSG_labelPwdUpper__</label>
-            <label><input type="checkbox" id="pwd-lower" checked> __MSG_labelPwdLower__</label>
-            <label><input type="checkbox" id="pwd-digit" checked> __MSG_labelPwdDigit__</label>
-            <label><input type="checkbox" id="pwd-special" checked> __MSG_labelPwdSpecial__</label>
+            <label><input type="checkbox" id="pwd-upper" checked> <span data-i18n="labelPwdUpper">大写字母 (A-Z)</span></label>
+            <label><input type="checkbox" id="pwd-lower" checked> <span data-i18n="labelPwdLower">小写字母 (a-z)</span></label>
+            <label><input type="checkbox" id="pwd-digit" checked> <span data-i18n="labelPwdDigit">数字 (0-9)</span></label>
+            <label><input type="checkbox" id="pwd-special" checked> <span data-i18n="labelPwdSpecial">特殊字符 (!@#$...)</span></label>
           </div>
           <div class="output-area output-row">
-            <label for="pwd-result">__MSG_labelResult__</label>
+            <label for="pwd-result" data-i18n="labelResult">结果：</label>
             <input type="text" id="pwd-result" readonly>
-            <button class="copy-mini" id="btn-toggle-pwd" title="__MSG_btnTogglePwdTitle__">👁️</button>
+            <button class="copy-mini" id="btn-toggle-pwd" data-i18n-title="btnTogglePwdTitle">👁️</button>
           </div>
-          <p class="warn-hint" id="hint-pwd-history" style="margin-top:8px">__MSG_hintPwdHistory__</p>
+          <p class="warn-hint" id="hint-pwd-history" style="margin-top:8px" data-i18n="hintPwdHistory">⚠️ 口令将保留在历史记录中，可在设置中配置</p>
         </section>
 
         <!-- 4. Color -->
@@ -87,90 +87,90 @@
           <div class="color-preview" id="color-preview"></div>
           <p class="warn-hint" data-for="color-similar"></p>
           <div class="color-advanced" id="color-advanced">
-            <label class="alpha-random-row"><input type="checkbox" id="chk-random-alpha"> __MSG_chkRandomAlpha__</label>
+            <label class="alpha-random-row"><input type="checkbox" id="chk-random-alpha"> <span data-i18n="chkRandomAlpha">🎲 透明度参与随机</span></label>
             <div class="alpha-block" id="alpha-block">
               <div class="opacity-slider">
-                <label for="alpha-range">__MSG_labelOpacity__</label>
+                <label for="alpha-range" data-i18n="labelOpacity">透明度：</label>
                 <input type="range" id="alpha-range" min="0" max="100" value="100">
                 <input type="number" id="alpha-input" min="0" max="100" value="100">
                 <span class="error-hint" data-for="alpha-input"></span>
               </div>
               <div class="alpha-tools">
-                <button class="lock-btn" id="btn-lock-alpha" title="__MSG_lockAlphaTitleUnlocked__">__MSG_btnLockAlphaUnlocked__</button>
-                <label class="alpha-check"><input type="checkbox" id="chk-show-alpha"> __MSG_chkShowAlpha__</label>
+                <button class="lock-btn" id="btn-lock-alpha" data-i18n="btnLockAlphaUnlocked" data-i18n-title="lockAlphaTitleUnlocked">🔓 透明度未锁定</button>
+                <label class="alpha-check"><input type="checkbox" id="chk-show-alpha"> <span data-i18n="chkShowAlpha">100%时也显示alpha格式</span></label>
               </div>
             </div>
           </div>
           <div class="output-area output-row" id="row-hex">
-            <label for="hex-result">__MSG_labelHex__</label>
+            <label for="hex-result" data-i18n="labelHex">HEX：</label>
             <input type="text" id="hex-result" readonly>
-            <button class="copy-mini" data-copy="hex" title="__MSG_titleCopyHex__">📋</button>
+            <button class="copy-mini" data-copy="hex" data-i18n-title="titleCopyHex">📋</button>
           </div>
           <div class="output-area output-row" id="row-rgb">
-            <label for="rgb-result">__MSG_labelRgb__</label>
+            <label for="rgb-result" data-i18n="labelRgb">RGB：</label>
             <input type="text" id="rgb-result" readonly>
-            <button class="copy-mini" data-copy="rgb" title="__MSG_titleCopyRgb__">📋</button>
+            <button class="copy-mini" data-copy="rgb" data-i18n-title="titleCopyRgb">📋</button>
           </div>
           <div class="output-area output-row" id="row-hsl">
-            <label for="hsl-result">__MSG_labelHsl__</label>
+            <label for="hsl-result" data-i18n="labelHsl">HSL：</label>
             <input type="text" id="hsl-result" readonly>
-            <button class="copy-mini" data-copy="hsl" title="__MSG_titleCopyHsl__">📋</button>
+            <button class="copy-mini" data-copy="hsl" data-i18n-title="titleCopyHsl">📋</button>
           </div>
           <div class="output-area output-row" id="row-lab">
-            <label for="lab-result">__MSG_labelLab__</label>
+            <label for="lab-result" data-i18n="labelLab">LAB：</label>
             <input type="text" id="lab-result" readonly>
-            <button class="copy-mini" data-copy="lab" title="__MSG_titleCopyLab__">📋</button>
+            <button class="copy-mini" data-copy="lab" data-i18n-title="titleCopyLab">📋</button>
           </div>
           <div class="output-area output-row" id="row-cmyk">
-            <label for="cmyk-result">__MSG_labelCmyk__</label>
+            <label for="cmyk-result" data-i18n="labelCmyk">CMYK：</label>
             <input type="text" id="cmyk-result" readonly>
-            <button class="copy-mini" data-copy="cmyk" title="__MSG_titleCopyCmyk__">📋</button>
+            <button class="copy-mini" data-copy="cmyk" data-i18n-title="titleCopyCmyk">📋</button>
           </div>
         </section>
 
         <!-- 5. Sequence -->
         <section class="panel" id="panel-sequence">
           <div class="setting">
-            <label for="seq-count">__MSG_labelSeqCount__</label>
+            <label for="seq-count" data-i18n="labelSeqCount">随机数数量：</label>
             <input type="number" id="seq-count" value="5" min="1" max="1024">
             <span class="error-hint" data-for="seq-count"></span>
           </div>
           <div class="setting">
-            <label for="seq-type">__MSG_labelSeqType__</label>
+            <label for="seq-type" data-i18n="labelSeqType">随机数类型：</label>
             <select id="seq-type">
-              <option value="decimal">__MSG_seqTypeDecimal__</option>
-              <option value="integer">__MSG_seqTypeInteger__</option>
+              <option value="decimal" data-i18n="seqTypeDecimal">小数 (0-1)</option>
+              <option value="integer" data-i18n="seqTypeInteger">整数</option>
             </select>
           </div>
           <div class="setting seq-decimal-config">
-            <label for="seq-dec-places">__MSG_labelSeqDecPlaces__</label>
+            <label for="seq-dec-places" data-i18n="labelSeqDecPlaces">小数位数：</label>
             <input type="number" id="seq-dec-places" value="3" min="1" max="32">
             <span class="error-hint" data-for="seq-dec-places"></span>
           </div>
           <div class="setting row seq-integer-config" style="display:none">
             <div>
-              <label for="seq-int-min">__MSG_labelIntMin__</label>
+              <label for="seq-int-min" data-i18n="labelIntMin">最小值：</label>
               <input type="number" id="seq-int-min" value="0">
               <span class="error-hint" data-for="seq-int-min"></span>
             </div>
             <div>
-              <label for="seq-int-max">__MSG_labelIntMax__</label>
+              <label for="seq-int-max" data-i18n="labelIntMax">最大值：</label>
               <input type="number" id="seq-int-max" value="100">
               <span class="error-hint" data-for="seq-int-max"></span>
             </div>
           </div>
-          <button class="swap-btn" id="swap-seq-int">__MSG_btnSwap__</button>
+          <button class="swap-btn" id="swap-seq-int" data-i18n="btnSwap">🔄 对调最大/最小值</button>
           <span class="warn-hint" data-for="seq-int-pair"></span>
           <div class="output-area">
-            <label for="seq-result">__MSG_labelResult__</label>
+            <label for="seq-result" data-i18n="labelResult">结果：</label>
             <input type="text" id="seq-result" readonly>
           </div>
         </section>
       </div>
 
       <footer id="footer">
-        <button class="btn btn-primary" id="btn-generate">__MSG_btnGenerate__</button>
-        <button class="btn btn-secondary" id="btn-copy">__MSG_btnCopy__</button>
+        <button class="btn btn-primary" id="btn-generate" data-i18n="btnGenerate">🎰 摇取</button>
+        <button class="btn btn-secondary" id="btn-copy" data-i18n="btnCopy">📋 复制</button>
       </footer>
 
     </div><!-- /main-view -->
@@ -178,10 +178,10 @@
     <!-- ======== Settings View ======== -->
     <div class="settings-view" id="settings-view">
       <div class="settings-scroll">
-      <h2>__MSG_settingsTitle__</h2>
+      <h2 data-i18n="settingsTitle">⚙️ 设置</h2>
 
       <div class="settings-section">
-        <h3>__MSG_sectionTheme__</h3>
+        <h3 data-i18n="sectionTheme">主题颜色</h3>
         <div class="color-presets" id="color-presets">
           <button class="color-preset" data-color="purple"  style="background:#6366f1" title="Purple"></button>
           <button class="color-preset" data-color="blue"    style="background:#3b82f6" title="Blue"></button>
@@ -193,55 +193,55 @@
           <button class="color-preset" data-color="slate"   style="background:#475569" title="Slate"></button>
         </div>
         <div class="custom-color-row">
-          <label for="input-custom-color">__MSG_labelCustomColor__</label>
-          <input type="text" id="input-custom-color" placeholder="__MSG_customColorPlaceholder__" maxlength="7">
+          <label for="input-custom-color" data-i18n="labelCustomColor">自定义：</label>
+          <input type="text" id="input-custom-color" data-i18n-placeholder="customColorPlaceholder" maxlength="7">
           <span class="error-hint" data-for="input-custom-color"></span>
         </div>
       </div>
 
       <div class="settings-section">
-        <h3>__MSG_sectionDisplay__<span style="font-weight:400;font-size:12px;color:#9ca3af">__MSG_hintMinTabs__</span></h3>
+        <h3><span data-i18n="sectionDisplay">显示选项</span><span style="font-weight:400;font-size:12px;color:#9ca3af" data-i18n="hintMinTabs">（最少保留 2 项）</span></h3>
         <div class="setting checkboxes" id="visibility-toggles">
-          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="decimal" checked> __MSG_tabDecimal__</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="decimal" title="__MSG_titleArrowUp__">▲</button><button class="arrow-btn arrow-down" data-tab="decimal" title="__MSG_titleArrowDown__">▼</button></span></div>
-          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="integer" checked> __MSG_tabInteger__</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="integer" title="__MSG_titleArrowUp__">▲</button><button class="arrow-btn arrow-down" data-tab="integer" title="__MSG_titleArrowDown__">▼</button></span></div>
-          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="password" checked> __MSG_tabPassword__</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="password" title="__MSG_titleArrowUp__">▲</button><button class="arrow-btn arrow-down" data-tab="password" title="__MSG_titleArrowDown__">▼</button></span></div>
-          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="rgb" checked> __MSG_tabRgb__</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="rgb" title="__MSG_titleArrowUp__">▲</button><button class="arrow-btn arrow-down" data-tab="rgb" title="__MSG_titleArrowDown__">▼</button></span></div>
-          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="sequence" checked> __MSG_tabSequence__</label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="sequence" title="__MSG_titleArrowUp__">▲</button><button class="arrow-btn arrow-down" data-tab="sequence" title="__MSG_titleArrowDown__">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="decimal" checked> <span data-i18n="tabDecimal">小数</span></label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="decimal" data-i18n-title="titleArrowUp">▲</button><button class="arrow-btn arrow-down" data-tab="decimal" data-i18n-title="titleArrowDown">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="integer" checked> <span data-i18n="tabInteger">整数</span></label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="integer" data-i18n-title="titleArrowUp">▲</button><button class="arrow-btn arrow-down" data-tab="integer" data-i18n-title="titleArrowDown">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="password" checked> <span data-i18n="tabPassword">口令</span></label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="password" data-i18n-title="titleArrowUp">▲</button><button class="arrow-btn arrow-down" data-tab="password" data-i18n-title="titleArrowDown">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="rgb" checked> <span data-i18n="tabRgb">颜色</span></label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="rgb" data-i18n-title="titleArrowUp">▲</button><button class="arrow-btn arrow-down" data-tab="rgb" data-i18n-title="titleArrowDown">▼</button></span></div>
+          <div class="tab-order-row"><label><input type="checkbox" class="tab-vis-toggle" data-tab="sequence" checked> <span data-i18n="tabSequence">随机序列</span></label><span class="tab-arrows"><button class="arrow-btn arrow-up" data-tab="sequence" data-i18n-title="titleArrowUp">▲</button><button class="arrow-btn arrow-down" data-tab="sequence" data-i18n-title="titleArrowDown">▼</button></span></div>
         </div>
-        <p class="hint-error" id="hint-min-tabs">__MSG_hintMinTabsError__</p>
+        <p class="hint-error" id="hint-min-tabs" data-i18n="hintMinTabsError">至少保留 2 个选项</p>
       </div>
 
       <div class="settings-section">
-        <h3>__MSG_sectionFeatures__</h3>
+        <h3 data-i18n="sectionFeatures">功能</h3>
         <div class="setting">
-          <label for="sel-pwd-security">__MSG_labelPwdSecurity__</label>
+          <label for="sel-pwd-security" data-i18n="labelPwdSecurity">🔒 口令保密级别：</label>
           <select id="sel-pwd-security">
-            <option value="default">__MSG_pwdSecurityDefault__</option>
-            <option value="low">__MSG_pwdSecurityLow__</option>
-            <option value="medium">__MSG_pwdSecurityMedium__</option>
-            <option value="high">__MSG_pwdSecurityHigh__</option>
+            <option value="default" data-i18n="pwdSecurityDefault">默认（密文 + 记录 + 告警）</option>
+            <option value="low" data-i18n="pwdSecurityLow">低（明文 + 记录）</option>
+            <option value="medium" data-i18n="pwdSecurityMedium">中（密文 + 记录）</option>
+            <option value="high" data-i18n="pwdSecurityHigh">高（密文 + 不记录）</option>
           </select>
         </div>
         <div class="setting checkboxes">
-          <label><input type="checkbox" id="chk-color-advanced"> __MSG_chkColorAdvanced__</label>
+          <label><input type="checkbox" id="chk-color-advanced"> <span data-i18n="chkColorAdvanced">🎨 颜色生成器高级模式（含透明度/RGB/HSL）</span></label>
         </div>
       </div>
 
       <div class="settings-section history-section">
         <div class="history-header">
-          <h3>__MSG_sectionHistory__</h3>
+          <h3 data-i18n="sectionHistory">📜 历史记录</h3>
           <div class="history-btns">
-            <button class="btn-export-history" id="btn-export-history" title="Export JSON">__MSG_btnExport__</button>
-            <button class="btn-clear-history" id="btn-clear-history">__MSG_btnClear__</button>
+            <button class="btn-export-history" id="btn-export-history" data-i18n="btnExport">📤 导出</button>
+            <button class="btn-clear-history" id="btn-clear-history" data-i18n="btnClear">🗑️ 清空</button>
           </div>
         </div>
         <div class="history-list" id="history-list">
-          <p class="history-empty">__MSG_historyEmpty__</p>
+          <p class="history-empty" data-i18n="historyEmpty">暂无记录</p>
         </div>
       </div>
       </div><!-- /settings-scroll -->
 
-      <button class="btn btn-primary btn-confirm" id="btn-back">__MSG_btnConfirm__</button>
+      <button class="btn btn-primary btn-confirm" id="btn-back" data-i18n="btnConfirm">✅ 确认</button>
     </div><!-- /settings-view -->
 
   </div>
